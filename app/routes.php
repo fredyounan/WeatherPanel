@@ -12,6 +12,8 @@
 */
 
 Route::get('/', function()
-{
+{		new Test();
+		echo "HI";
+		
 	return View::make('hello');
 });
