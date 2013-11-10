@@ -3,27 +3,15 @@
 use Helpers\Variables;
 
 class MainController extends BaseController {
-
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
+    protected $layout = 'layouts.master';
 
 	public function showMain()
 	{
-		$c = new Variables();
-		echo $c->toHeatIndex(60, 50);
-		echo $c->getAtmosphere(1033.4);
+        $c = new Variables();
+        $content = array('toHeatIndex' => $c->toHeatIndex(60, 50), 'getAtmosphere' => $c->getAtmosphere(1033.4));
+        $this->layout->content = View::make('test')->with($content);
+		/*echo $c->toHeatIndex(60, 50);
+		echo $c->getAtmosphere(1033.4);*/
 		//return View::make('main');
-		
 	}
-
 }

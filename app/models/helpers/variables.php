@@ -7,7 +7,7 @@ class Variables
 
 	public function getAtmosphere($bar)
 	{
-		return $bar * 0.99;
+		return ($bar * 0.99) / 1000;
 	}
 
 	public function toHeatIndex($temperature, $dewpoint)
