@@ -1,5 +1,7 @@
 <?php
 
+use Helpers\Variables;
+
 class MainController extends BaseController {
 
 	/*
@@ -17,7 +19,10 @@ class MainController extends BaseController {
 
 	public function showMain()
 	{
-		return View::make('main');
+		$c = new Variables();
+		echo $c->toHeatIndex(60, 50);
+		echo $c->getAtmosphere(1033.4);
+		//return View::make('main');
 		
 	}
 
