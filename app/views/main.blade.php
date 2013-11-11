@@ -1,14 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>WeatherPanel</title>
-    {{ HTML::script('js/jquery-2.0.3.min.js') }}
-	{{ HTML::style('css/style.css') }}
-</head>
-<body>
-    <div id="main">
-		<p></p>
-	</div>
-</body>
-</html>
+@extends('layouts.master')
+
+@section('content')
+            <p>toHeatIndex(60, 50): {{ $toHeatIndex }}</p>
+            <p>getAtmosphere(1033.4): {{ $getAtmosphere }}</p>
+@stop
