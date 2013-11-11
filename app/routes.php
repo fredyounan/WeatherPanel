@@ -11,20 +11,30 @@
 |
 */
 
+use Helpers\Variables;
+
 Route::get('/', array('before' => 'auth' ,function()
 {
-    return 'Hello, '.Auth::user()->username.'!';
+		$c = new Variables();
+        $content = array('toHeatIndex' => $c->toHeatIndex(60, 50), 'getAtmosphere' => $c->getAtmosphere(1033.4));
+		echo $c->toHeatIndex(60, 50);
+		echo $c->getAtmosphere(1033.4);
+		return View::make('main')->with($content);
 }));
 
 
+Route::post('login', function()
+{
+   if (Auth::attempt( array('username' => Input::get('username'), 'password' => Input::get('password'))))
+   {
+	   return Redirect::to('/');
+   }
+	
+});
+
 //Route::get('/', 'MainController@ShowMain');
-Route::get('/login', function()
+Route::get('login', function()
 {
     return View::make('login');
 });
-Route::post('/login', function()
-{
-    Auth::attempt( array('username' => Input::get('username'), 'password' => Hash::make(Input::get('password'))) );
 
-    return Redirect::to('/');
-});
