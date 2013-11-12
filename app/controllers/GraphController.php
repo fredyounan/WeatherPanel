@@ -6,13 +6,14 @@ class GraphController extends BaseController
     public function viewAverageMalaysianGraph() 
     {
         $warmsteTemps = DB::select("
-            SELECT stations.name, AVG( temp ) as average 
+            SELECT stations.name, measurements.date, AVG( temp ) as average 
             FROM  `measurements` 
             LEFT OUTER JOIN stations
             USING (`stn` ) 
             WHERE stations.country =  'MALAYSIA'
-            GROUP BY measurements.stn
-            LIMIT 0 , 30
+            GROUP BY measurements.stn, measurements.date
+            ORDER BY average desc
+            LIMIT 0, 30
         ");
 
         $ticks = array();

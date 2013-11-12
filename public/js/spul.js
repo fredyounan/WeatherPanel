@@ -1,6 +1,6 @@
 function tooltipContentEditor(str, seriesIndex, pointIndex, plot) {
     // display series_label, x-axis_tick, y-axis value
-    return "Temperature: " + plot.data[seriesIndex][pointIndex];
+    return "Temperature: " + plot.data[seriesIndex][pointIndex].toFixed(2).replace(',', '.');
 }
 
 $(document).ready(function(){
@@ -24,10 +24,6 @@ $(document).ready(function(){
         // plot container, shrinking the grid to accomodate the legend.
         // A value of "outside" would not shrink the grid and allow
         // the legend to overflow the container.
-        legend: {
-            show: true,
-            placement: 'outsideGrid'
-        },
         axes: {
             // Use a category axis on the x axis and use our custom ticks.
             xaxis: {

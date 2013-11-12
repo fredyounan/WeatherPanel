@@ -38,10 +38,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ URL::to('data/malaysia') }}">Average tempartures Malaysia</a></li>
-                                <!--<li class="divider"></li>
-                                <li class="dropdown-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>-->
+ 
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -50,15 +47,19 @@
                                 <li><a href="#">All data</a></li>
                                 <li><a href="#">Average temperatures</a></li>
                                 <li><a href="#">Visibility in Africa</a></li>
-                                <!--<li class="divider"></li>
-                                <li class="dropdown-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>-->
                             </ul>
                         </li>
+						<li class="pull-right"></li>
                     </ul>
-                    
-                    <p class="pull-right" style="margin-top: 15px;">Logged in as Admin</p>
+                     <ul class="nav navbar-nav pull-right">
+						<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ URL::to('logout') }}">Logout</a></li>
+                               
+                            </ul>
+                        </li>
+					</ul>
                 </div><!--/.nav-collapse -->
             </div>
         </div>
