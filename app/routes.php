@@ -13,45 +13,67 @@
 
 use Helpers\Variables;
 
-Route::get('/', array('before' => 'auth', function()
+Route::group(array('before' => 'auth'), function()
 {
-    $warmsteTemps = DB::select("
-        SELECT stations.name, AVG( temp ) as average 
-        FROM  `measurements` 
-        LEFT OUTER JOIN stations
-        USING (  `stn` ) 
-        WHERE stations.country =  'MALAYSIA'
-        GROUP BY measurements.stn
-        LIMIT 0 , 30
-     ");
+    Route::get('data/malaysia', 'GraphController@viewAverageMalaysianGraph');
+    
+    Route::get('/', 'DashboardController@viewDashboard');
+});
 
-    $ticks = array();
-    $s1 = array();
+Route::get('login', 'AuthController@viewLogin');
+Route::post('login', 'AuthController@doLogin');
+Route::get('logout', 'AuthController@doLogout');
 
-    foreach ($warmsteTemps as $temp => $data) { 
-        $ticks[] = $data->name;
-        $s1[] = $data->average;
-    }
+
+/*Route::group(array('before' => 'auth', function()
+{
+    Route::get('data/malaysia', function()
+    {
+        $warmsteTemps = DB::select("
+            SELECT stations.name, AVG( temp ) as average 
+            FROM  `measurements` 
+            LEFT OUTER JOIN stations
+            USING (`stn` ) 
+            WHERE stations.country =  'MALAYSIA'
+            GROUP BY measurements.stn
+            LIMIT 0 , 30
+        ");
+
+        $ticks = array();
+        $s1 = array();
+
+        foreach ($warmsteTemps as $temp => $data) { 
+            $ticks[] = $data->name;
+            $s1[] = $data->average;
+        }*/
+
 		/*$c = new Variables();
         $content = array('toHeatIndex' => $c->toHeatIndex(60, 50), 'getAtmosphere' => $c->getAtmosphere(1033.4));
 		echo $c->toHeatIndex(60, 50);
 		echo $c->getAtmosphere(1033.4);*/
-		return View::make('main')->with(array('ticks' => implode("', '", $ticks), 's1' => implode(', ', $s1)));
+		/*return View::make('graph')->with(array('ticks' => implode("', '", $ticks), 's1' => implode(', ', $s1)));
+    });
+    
+    Route::get('/', function()
+    {
+        return View::make('dashboard');
+    });
 }));
-
 
 Route::post('login', function()
 {
-   if (Auth::attempt( array('username' => Input::get('username'), 'password' => Input::get('password'))))
-   {
+    if (Auth::attempt( array('username' => Input::get('username'), 'password' => Input::get('password'))))
+    {
 	   return Redirect::to('/');
-   }
-	
+    }
 });
 
-//Route::get('/', 'MainController@ShowMain');
-Route::get('login', function()
+Route::get('login', function() 
 {
+    if (Auth::check()) 
+    {
+        return Redirect::to('/');
+    }
+    
     return View::make('login');
-});
-
+});*/

@@ -6,7 +6,5 @@
             var ticks = ['{{ $ticks }}'];
             </script>
             
-            <div id="chart1" class="span12" style="height:250px;"></div>
-            
-            
+            <div id="chart1" class="span12" style="height:250px;"></div>       
 @stop
