@@ -7,6 +7,9 @@
 
         <title>WeatherPanel</title>
 
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBU3HAlqWpWlZXvuAV0U4Y3LoYiGyXoA8o&sensor=false"></script>
+	
+		
         <!-- Bootstrap core CSS -->
         <link href="http:////netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
         <link href="{{ URL::asset('css/jquery.jqplot.css') }}" rel="stylesheet">
@@ -71,7 +74,6 @@
     
     <script type="text/javascript" src="http://codeorigin.jquery.com/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-    
     <script type="text/javascript" src="{{ URL::asset('js/jquery.jqplot.min.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::asset('js/plugins/jqplot.highlighter.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/plugins/jqplot.barRenderer.min.js') }}"></script>
