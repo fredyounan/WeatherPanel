@@ -9,7 +9,7 @@
 
         <!-- Bootstrap core CSS -->
         <link href="http:////netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
-        <link href="{{ URL::asset('css/jquery.jqplot.css') }}" rel="stylesheet">
+        <link href="<?php echo URL::asset('css/jquery.jqplot.css'); ?>" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -54,17 +54,17 @@
         </div>
 
         <div class="container" style="margin-top: 60px;">
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
         </div> <!-- /container -->
     </body>
     
     <script type="text/javascript" src="http://codeorigin.jquery.com/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
     
-    <script type="text/javascript" src="{{ URL::asset('js/jquery.jqplot.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/plugins/jqplot.barRenderer.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/plugins/jqplot.categoryAxisRenderer.min.js') }}"></script>
-	<script type="text/javascript" src="{{ URL::asset('js/plugins/jqplot.pointLabels.min.js') }}"></script>
+    <script type="text/javascript" src="<?php echo URL::asset('js/jquery.jqplot.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo URL::asset('js/plugins/jqplot.barRenderer.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo URL::asset('js/plugins/jqplot.categoryAxisRenderer.min.js'); ?>"></script>
+	<script type="text/javascript" src="<?php echo URL::asset('js/plugins/jqplot.pointLabels.min.js'); ?>"></script>
             
-    <script type="text/javascript" src="{{ URL::asset('js/spul.js') }}"></script>
+    <script type="text/javascript" src="<?php echo URL::asset('js/spul.js'); ?>"></script>
 </html>
