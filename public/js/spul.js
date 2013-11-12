@@ -1,3 +1,8 @@
+function tooltipContentEditor(str, seriesIndex, pointIndex, plot) {
+    // display series_label, x-axis_tick, y-axis value
+    return "Temperature: " + plot.data[seriesIndex][pointIndex];
+}
+
 $(document).ready(function(){
     // Can specify a custom tick Array.
     // Ticks should match up one for each y value (category) in the series.
@@ -27,6 +32,9 @@ $(document).ready(function(){
             // Use a category axis on the x axis and use our custom ticks.
             xaxis: {
                 renderer: $.jqplot.CategoryAxisRenderer,
+				 tickOptions:{
+					formatString:'%d&deg'
+				 }, 
                 ticks: ticks
             },
             // Pad the y axis just a little so bars can get close to, but
@@ -35,6 +43,10 @@ $(document).ready(function(){
                 pad: 1.05,
                 tickOptions: {formatString: '%d&deg'}
             }
-        }
+        },
+		highlighter:{
+        show:true,
+        tooltipContentEditor:tooltipContentEditor
+    }
     });
 });
