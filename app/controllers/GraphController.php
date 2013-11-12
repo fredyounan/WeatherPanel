@@ -45,7 +45,8 @@ class GraphController extends BaseController {
             $averageTemperatures[$stationName] = ($totalTemperature / $measurementCount);
         }
         
-        var_dump($averageTemperatures)
+		arsort($averageTemperatures);
+        var_dump($averageTemperatures);
         /*$warmsteTemps = DB::select("
             SELECT stations.name, measurements.date, AVG( temp ) as average 
             FROM  `measurements` 

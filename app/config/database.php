@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'unwdmi',
 			'username'  => 'root',
-			'password'  => '',
+			'password'  => 'noobnoob1',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

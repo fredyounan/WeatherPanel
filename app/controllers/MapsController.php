@@ -20,7 +20,27 @@ class MapsController extends BaseController
 		
 		$o = new Parse();
 		$arr = $o->parseFile((string)$stn . ".txt");
-		var_dump($arr);
+
+		$test = array();
+		
+		foreach($arr as $key => $value)
+		{
+			if (!array_key_exists($value[6], $test))
+			{
+				$test[$value[6]][0] = (float)$value[9];
+				$test[$value[6]][1] = 0;
+			}
+			else
+			{
+				$test[$value[6]][0] += (float)$value[9];
+				$test[$value[6]][1]++;
+				
+			}		
+		}
+		
+		var_dump($test);
+		
+		echo $test["2013-11-12"][0] / $test["2013-11-12"][1];
 		
 		//return View::make('data')->with(array('name' => $result[0]->name));
 	}
