@@ -13,15 +13,17 @@
 
 use Helpers\Variables;
 
-Route::get('/', /*array('before' => 'auth'*, */function()
+Route::get('/', array('before' => 'auth', function()
 {
-    $warmsteTemps = DB::select("SELECT stations.name, AVG( temp ) as average 
-FROM  `measurements` 
-LEFT OUTER JOIN stations
-USING (  `stn` ) 
-WHERE stations.country =  'MALAYSIA'
-GROUP BY measurements.stn
-LIMIT 0 , 30");
+    $warmsteTemps = DB::select("
+        SELECT stations.name, AVG( temp ) as average 
+        FROM  `measurements` 
+        LEFT OUTER JOIN stations
+        USING (  `stn` ) 
+        WHERE stations.country =  'MALAYSIA'
+        GROUP BY measurements.stn
+        LIMIT 0 , 30
+     ");
 
     $ticks = array();
     $s1 = array();
@@ -35,7 +37,7 @@ LIMIT 0 , 30");
 		echo $c->toHeatIndex(60, 50);
 		echo $c->getAtmosphere(1033.4);*/
 		return View::make('main')->with(array('ticks' => implode("', '", $ticks), 's1' => implode(', ', $s1)));
-});//);
+}));
 
 
 Route::post('login', function()
