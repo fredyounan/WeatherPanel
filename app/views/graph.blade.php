@@ -6,5 +6,11 @@
             var ticks = ['{{ $ticks }}'];
             </script>
             
-            <div id="chart1" class="span12" style="height:250px;"></div>       
+            <div class="row">
+                <h1>{{ $graphName }}</h1>
+                
+                <hr />
+                
+                <div id="chart1" style="height:250px;"></div>
+            </div>
 @stop

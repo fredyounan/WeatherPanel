@@ -27,6 +27,6 @@ class GraphController extends BaseController
         $content = array('toHeatIndex' => $c->toHeatIndex(60, 50), 'getAtmosphere' => $c->getAtmosphere(1033.4));
 		echo $c->toHeatIndex(60, 50);
 		echo $c->getAtmosphere(1033.4);*/
-		return View::make('graph')->with(array('ticks' => implode("', '", $ticks), 's1' => implode(', ', $s1)));
+		return View::make('graph')->with(array('graphName' => 'Average temperatures per city &raquo; Malaysia', 'ticks' => implode("', '", $ticks), 's1' => implode(', ', $s1)));
     }
 }
