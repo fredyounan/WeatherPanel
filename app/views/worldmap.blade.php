@@ -3,7 +3,7 @@
 @section('content')
             <h1>World station temperatures</h1>
 			<hr />
-            <div id="map-canvas" style="height:500px;width:100%;"></div>
+            <div id="map-canvas" style="height:500px;width:100%; margin-bottom: 25px;"></div>
 			
 			<script type="text/javascript">
             var map;

@@ -30,7 +30,7 @@ $(document).ready(function(){
                                  tickOptions:{
                                         formatString:'%H:%M:%S'
                                  }, 
-				tickInterval: '1 day'
+				tickInterval: '1 hour',
             },
             // Pad the y axis just a little so bars can get close to, but
             // not touch, the grid boundaries.  1.2 is the default padding.
@@ -39,6 +39,10 @@ $(document).ready(function(){
                 tickOptions: {formatString: '%d&deg'}
             }
         },
+		cursor:{ 
+        show: true,
+        zoom:true, 
+        } ,
 		highlighter:{
         show:true,
         tooltipContentEditor:tooltipContentEditor

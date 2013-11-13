@@ -23,8 +23,6 @@ class MapsController extends BaseController
        foreach ($arr as $data) {
 			if ($data[6] == date('Y-m-d'))
 			{
-			//echo $data[6] . ' ' . $data[2] . "\n";
-
             $s1[] = '["' . $data[2] . '",' . $data[10] . ']';
 			}
         }
@@ -36,13 +34,29 @@ class MapsController extends BaseController
 	
     public function runMaps() 
     {
-		$data = DB::select("SELECT DISTINCT stations.name, stations.stn, stations.longitude, stations.latitude FROM stations 
-		WHERE stations.latitude >= -45 
-		AND stations.latitude <= 30 
-		AND stations.longitude >= -20 
-		AND stations.longitude <= 50;");
+		$data = DB::select("SELECT stations.name, stations.stn, stations.longitude, stations.latitude FROM stations 
+		WHERE stn IN (655360, 642100, 627720, 621760, 671970, 681100, 646500, 636120, 600010, 684240);");
 		
-		return View::make('maps')->with(array('o' => json_encode($data)));
+		 $ts = strtotime(date('Y-m-d'));
+    $start = (date('w', $ts) == 0) ? $ts : strtotime('last sunday', $ts);
+    $o = array(date('Y-m-d', $start),
+                 date('Y-m-d', strtotime('next saturday', $start)));
+				
+				
+				
+				 
+		$stations = array();		 
+		$parse = new Parse();		 
+				 
+		foreach($data as $value)
+		{
+			
+			$stations[] = $parse->parseFile((string)$value->stn . ".txt");
+		}
+		
+		var_dump($stations);
+		
+		//return View::make('maps')->with(array('o' => json_encode($data)));
     }
 	
 	public function getData($stn)
