@@ -6,3 +6,4 @@ composer.lock
 Thumbs.db
 app/storage
 public/data
+app/config/database.php
