@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
-            <h1>African visibility</h1>
+            <h1>Average visibility of Africa per week</h1>
+			<h4>Average visibility is {{ $visib }}<small class="pull-right">{{ $date1 }} to {{ $date2}}</small></h4>
 			<hr />
 			<div class="row" style="margin-bottom: 25px;">
-				<div class="col-md-6" id="map-canvas" style="height:500px;"></div>
-				<div class="col-md-6" id="visib"><p>testjemoeder</p></div>
+				<div id="map-canvas" style="height:500px;"></div>
 			</div>
 			<script type="text/javascript">
             var map;

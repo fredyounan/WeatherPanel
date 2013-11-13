@@ -54,39 +54,25 @@ class MapsController extends BaseController
 			$stations[] = $parse->parseFile((string)$value->stn . ".txt");
 		}
 		
-		var_dump($stations);
+		$helper = new Variables();
+		$dates = $helper->dateRange($o[0], $o[1]);
 		
-		//return View::make('maps')->with(array('o' => json_encode($data)));
-    }
-	
-	public function getData($stn)
-	{
-		$result = DB::select("SELECT name FROM stations WHERE stn = ?", array($stn));
+		$count = 0;
 		
-		$o = new Parse();
-		$arr = $o->parseFile((string)$stn . ".txt");
-
-		$test = array();
+		$visibility = 0;
 		
-		foreach($arr as $key => $value)
+		foreach($stations as $set)
 		{
-			if (!array_key_exists($value[6], $test))
+			foreach($set as $measurement)
 			{
-				$test[$value[6]][0] = (float)$value[9];
-				$test[$value[6]][1] = 0;
+				if (in_array($measurement[6], $dates))
+				{
+					$count++;
+					$visibility += $measurement[9];
+				}
 			}
-			else
-			{
-				$test[$value[6]][0] += (float)$value[9];
-				$test[$value[6]][1]++;
-				
-			}		
 		}
 		
-		var_dump($test);
-		
-		echo $test["2013-11-12"][0] / $test["2013-11-12"][1];
-		
-		//return View::make('data')->with(array('name' => $result[0]->name));
-	}
+		return View::make('maps')->with(array('o' => json_encode($data), 'date1' => $o[0], 'date2' => $o[1], 'visib' => number_format($visibility / $count, 2)));
+    }
 }
