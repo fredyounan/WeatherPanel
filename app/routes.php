@@ -23,6 +23,7 @@ Route::group(array('before' => 'auth'), function()
 Route::get('login', 'AuthController@viewLogin');
 Route::post('login', 'AuthController@doLogin');
 Route::get('data/africa', 'MapsController@runMaps');
+Route::get('data/africa/{stn}', 'MapsController@getData');
 Route::get('logout', 'AuthController@doLogout');
 
 

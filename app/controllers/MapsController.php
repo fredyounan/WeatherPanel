@@ -13,4 +13,15 @@ class MapsController extends BaseController
 		
 		return View::make('maps')->with(array('o' => json_encode($data)));
     }
+	
+	public function getData($stn)
+	{
+		$result = DB::select("SELECT name FROM stations WHERE stn = ?", array($stn));
+		
+		$o = new Parse();
+		$arr = $o->parseFile((string)$stn . ".txt");
+		var_dump($arr);
+		
+		//return View::make('data')->with(array('name' => $result[0]->name));
+	}
 }

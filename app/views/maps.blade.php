@@ -26,7 +26,7 @@
 				  $(o).each(function(key, value) { var marker = new google.maps.Marker({
 				  position: new google.maps.LatLng(value.latitude, value.longitude),
 				  map: map,
-				  url: "/data/africa/" + value.stn,
+				  url: "africa/" + value.stn,
 				  title: value.name
 		   });
 				google.maps.event.addListener(marker, 'click', function() {
