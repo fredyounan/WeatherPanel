@@ -44,8 +44,7 @@ $(document).ready(function(){
         zoom:true, 
         } ,
 		highlighter:{
-        show:true,
-        tooltipContentEditor:tooltipContentEditor
+        show:true
     }
     });
 });
