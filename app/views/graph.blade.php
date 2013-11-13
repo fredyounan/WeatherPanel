@@ -3,7 +3,6 @@
 @section('content')
             <script type="text/javascript">
             var s1 = [{{ $s1 }}];
-            var ticks = ['{{ $ticks }}'];
             </script>
             
             <div class="row">

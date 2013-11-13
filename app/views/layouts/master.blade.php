@@ -77,6 +77,7 @@
     <script type="text/javascript" src="{{ URL::asset('js/jquery.jqplot.min.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::asset('js/plugins/jqplot.highlighter.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/plugins/jqplot.barRenderer.min.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::asset('js/plugins/jqplot.dateAxisRenderer.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/plugins/jqplot.categoryAxisRenderer.min.js') }}"></script>
 	<script type="text/javascript" src="{{ URL::asset('js/plugins/jqplot.pointLabels.min.js') }}"></script>
             
