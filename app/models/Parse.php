@@ -15,7 +15,8 @@ class Parse {
 				$result[] = explode(",", $line);
 			}
 		}
-		var_dump($result);
+		
+		return $result;
 	}
 	
 }

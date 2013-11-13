@@ -9,8 +9,6 @@
             var map;
 			
 			var o = {{ $o }};
-			console.log(o);
-				
 			function initialize() {
 			  var mapOptions = {
 				zoom: 3,
@@ -25,12 +23,18 @@
 
 			  map = new google.maps.Map(document.getElementById('map-canvas'),
 				  mapOptions);
-				  $(o).each(function(key, value) { new google.maps.Marker({
+				  $(o).each(function(key, value) { var marker = new google.maps.Marker({
 				  position: new google.maps.LatLng(value.latitude, value.longitude),
 				  map: map,
-				  url: "/test",
-				  title: value.visib + ":" + value.name
-		   }); });
+				  url: "/data/africa/" + value.stn,
+				  title: value.name
+		   });
+				google.maps.event.addListener(marker, 'click', function() {
+					window.location.href = this.url;
+			  });
+		   
+		   
+		   });
 			}
 			
 			
