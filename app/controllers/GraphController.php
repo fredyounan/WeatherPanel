@@ -19,34 +19,63 @@ STP
 */
 
 class GraphController extends BaseController {
-    public function viewAverageMalaysianGraph() 
+    public function top10Latitudes() 
     {
         $today = date('Y-m-d');
         
-        $malaysianStations = Station::where('country', '=', 'MALAYSIA')->lists('stn', 'name');
-        $averageTemperatures = array();
+        $southernHemisphereStations = Station::
+            where('latitude', '<=', 0)
+            ->where('latitude', '>=', -90)
+            ->where('longitude', '>=', -180)
+            ->where('longitude', '<=', 180)
+            ->get();
+            
         
-        foreach ($malaysianStations as $stationName => $station) {
-            $measurements = Parse::parseFile($station . '.txt');
+        $totalTemperatures = array();
+        $totalDewp = array();
+        $lengthTemperatures = array();
+        
+        foreach ($southernHemisphereStations as $pos => $station) {
+            $measurements = Parse::parseFile($station->stn . '.txt');
             
             // Lege bestanden overslaan
             if (empty($measurements)) continue;
             
-            $totalTemperature = 0;
-            $measurementCount = 0;
+            if (! isset($totalTemperatures[$station->latitude])) {
+                $totalTemperatures[$station->latitude] = 0;
+                $totalDewp[$station->latitude] = 0;
+                $lengthTemperatures[$station->latitude] = 0;
+            }
             
             foreach ($measurements as $measurement) {
                 if ($measurement[6] != $today) continue; 
                 
-                $measurementCount++;
-                $totalTemperature += $measurement[10];
+                $totalTemperatures[$station->latitude] += $measurement[10];
+                $totalDewp[$station->latitude] += $measurement[4];
+                $lengthTemperatures[$station->latitude]++;
             }
-            
-            $averageTemperatures[$stationName] = ($totalTemperature / $measurementCount);
         }
         
-		arsort($averageTemperatures);
-        var_dump($averageTemperatures);
+        $averageTemperatures = array();
+        
+        $c = new Variables();
+        
+		foreach ($totalTemperatures as $latitude => $temperature) {
+            $length = $lengthTemperatures[$latitude];
+            $averageTemperatures[$latitude] = $c->toHeatIndex($temperature / $length, $totalDewp[$latitude] / $length);
+        }
+        
+        arsort($averageTemperatures);
+        
+        $limit = 10;
+        
+        foreach ($averageTemperatures as $latitude => $temperature) {
+            $s1[] = '["' . $latitude . '",' . $temperature . ']';
+        }
+        
+        return View::make('latitude')->with(array('temperatures' => array_slice($averageTemperatures, 0, 10, true)));
+        
+        
         /*$warmsteTemps = DB::select("
             SELECT stations.name, measurements.date, AVG( temp ) as average 
             FROM  `measurements` 

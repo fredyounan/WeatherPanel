@@ -15,7 +15,7 @@ use Helpers\Variables;
 
 Route::group(array('before' => 'auth'), function()
 {
-    Route::get('data/malaysia', 'GraphController@viewAverageMalaysianGraph');
+    Route::get('data/latitudes', 'GraphController@top10Latitudes');
     
     Route::get('/', 'DashboardController@viewDashboard');
 });
