@@ -41,15 +41,16 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ URL::to('data/latitudes') }}">Top 10 Latitudes With Highest Temperatures</a></li>
+                                <li><a href="{{ URL::to('data/world') }}">World Temperatures</a></li>
+                                <li><a href="{{ URL::to('data/africa') }}">African visibility</a></li>
  
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Export <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">All data</a></li>
-                                <li><a href="#">Average temperatures</a></li>
-                                <li><a href="#">Visibility in Africa</a></li>
+                                <li><a href="{{ URL::to('export/latitudes') }}">Top 10 Latitudes With Highest Temperatures</a></li>
+                                <li><a href="{{ URL::to('export/africa') }}">African visibility</a></li>
                             </ul>
                         </li>
 						<li class="pull-right"></li>

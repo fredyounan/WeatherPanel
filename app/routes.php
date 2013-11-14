@@ -17,17 +17,23 @@ Route::group(array('before' => 'auth'), function()
 {
     Route::get('data/latitudes', 'GraphController@top10Latitudes');
     
+    Route::get('data/africa', 'MapsController@runMaps');
+    Route::get('data/africa/{stn}', 'MapsController@getData');
+    
+    Route::get('data/world', 'MapsController@runWorld');
+    Route::get('data/world/{stn}', 'MapsController@getWorldStation');
+    
+    Route::get('export/latitudes', 'ExportController@top10Latitudes');
+    Route::get('export/africa', 'ExportController@africanVisibility');
+    Route::get('export/station/{stn}', 'ExportController@exportData');
+    
+    Route::get('logout', 'AuthController@doLogout');
+    
     Route::get('/', 'DashboardController@viewDashboard');
 });
 
 Route::get('login', 'AuthController@viewLogin');
 Route::post('login', 'AuthController@doLogin');
-Route::get('data/africa', 'MapsController@runMaps');
-Route::get('data/africa/{stn}', 'MapsController@getData');
-Route::get('data/world', 'MapsController@runWorld');
-Route::get('data/world/{stn}', 'MapsController@getWorldStation');
-
-Route::get('logout', 'AuthController@doLogout');
 
 
 /*Route::group(array('before' => 'auth', function()

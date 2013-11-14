@@ -19,7 +19,7 @@ STP
 */
 
 class GraphController extends BaseController {
-    public function top10Latitudes() 
+    public static function getHeatIndexCorrectedTemperaturesByLatitudeInSouthernHemishphere()
     {
         $today = date('Y-m-d');
         
@@ -29,8 +29,7 @@ class GraphController extends BaseController {
             ->where('longitude', '>=', -180)
             ->where('longitude', '<=', 180)
             ->get();
-            
-        
+
         $totalTemperatures = array();
         $totalDewp = array();
         $lengthTemperatures = array();
@@ -67,38 +66,16 @@ class GraphController extends BaseController {
         
         arsort($averageTemperatures);
         
-        $limit = 10;
+        return $averageTemperatures;
+    }
+    
+    public function top10Latitudes() {
+        $averageTemperatures = self::getHeatIndexCorrectedTemperaturesByLatitudeInSouthernHemishphere();
         
         foreach ($averageTemperatures as $latitude => $temperature) {
             $s1[] = '["' . $latitude . '",' . $temperature . ']';
         }
         
         return View::make('latitude')->with(array('temperatures' => array_slice($averageTemperatures, 0, 10, true)));
-        
-        
-        /*$warmsteTemps = DB::select("
-            SELECT stations.name, measurements.date, AVG( temp ) as average 
-            FROM  `measurements` 
-            LEFT OUTER JOIN stations
-            USING (`stn` ) 
-            WHERE stations.country =  'MALAYSIA'
-            GROUP BY measurements.stn, measurements.date
-            ORDER BY average desc
-            LIMIT 0, 30
-        ");
-
-        $ticks = array();
-        $s1 = array();
-
-        foreach ($warmsteTemps as $temp => $data) { 
-            $ticks[] = $data->name;
-            $s1[] = $data->average;
-        }*/
-
-		/*$c = new Variables();
-        $content = array('toHeatIndex' => $c->toHeatIndex(60, 50), 'getAtmosphere' => $c->getAtmosphere(1033.4));
-		echo $c->toHeatIndex(60, 50);
-		echo $c->getAtmosphere(1033.4);*/
-		//return View::make('graph')->with(array('graphName' => 'Average temperatures per city &raquo; Malaysia', 'ticks' => implode("', '", $ticks), 's1' => implode(', ', $s1)));
     }
 }
